@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>automation-university-gateway-server</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -62,12 +64,7 @@
             <artifactId>spring-cloud-starter-feign</artifactId>
             <version>1.4.7.RELEASE</version>
         </dependency>
-        <dependency>
-            <scope>compile</scope>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.5.2</version>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-netflix-core</artifactId>
@@ -95,14 +92,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-sleuth-core</artifactId>
-            <version>1.2.0.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
-            <version>1.2.0.RELEASE</version>
+            <scope>compile</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.5.3</version>
         </dependency>
     </dependencies>
 
@@ -111,6 +104,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <addResources>true</addResources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <mainClass>io.instacode.automation.spring.GatewayApplication</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
@@ -119,14 +122,16 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <tasks>
-                                <exec dir="${project.basedir}/src/main/angular/ui" executable="cmd" osfamily="windows">
-                                    <arg value="/c" />
-                                    <arg value="ng" />
-                                    <arg value="build" />
+                                <exec dir="${project.basedir}/src/main/angular/ui" executable="cmd"
+                                      osfamily="windows">
+                                    <arg value="/c"/>
+                                    <arg value="ng"/>
+                                    <arg value="build"/>
                                 </exec>
-                                <exec dir="${project.basedir}/src/main/angular/ui" executable="/bin/sh" osfamily="mac">
-                                    <arg value="-c" />
-                                    <arg value="ng build" />
+                                <exec dir="${project.basedir}/src/main/angular/ui"
+                                      executable="/bin/sh" osfamily="mac">
+                                    <arg value="-c"/>
+                                    <arg value="ng build"/>
                                 </exec>
                             </tasks>
                         </configuration>
