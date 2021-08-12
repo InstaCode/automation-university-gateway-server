@@ -156,7 +156,7 @@
                 </executions>
                 <configuration>
                     <dockerfile>Dockerfile.maven</dockerfile>
-                    <repository>automationu/tracing-server</repository>
+                    <repository>automationu/gateway-server</repository>
                     <tag>${project.version}</tag>
                     <buildArgs>
                         <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
